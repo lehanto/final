@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <title>カメラのテスト</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1, user-scalable = no">
+</head>
+<body>
+    <label>写真</label><br>
+    <form action="get-exif.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="filename">
+        <input type="submit" name="submit" value="送信" />
+    </form>
+</body>
+</html>
