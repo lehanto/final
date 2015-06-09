@@ -15,8 +15,6 @@
 
 
 <?php
-header("Content-Type: text/html; charset=UTF-8");
-
 //ライブラリを読み込む
 require_once "./get-exif-10from60.php";
 
@@ -28,7 +26,6 @@ $file_name = basename($_GET["f"]);
 //ディレクトリのパス
 $path = $dir_name . "/" . $file_name;
 echo "$path";
-
 echo "<img src=\" $path  \"width=\"500\">";
 
 //マップを表示
