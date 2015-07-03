@@ -20,7 +20,10 @@
 <?php
 
 	//ライブラリを読み込む
+	//変換
 	require_once "./get-exif-10from60.php";
+	//表生成
+	require_once "./print-table.php";
   // アップロードが正常に行われたかチェック
   if ( $_FILES['filename']['error'] == UPLOAD_ERR_OK )
   {
@@ -74,6 +77,8 @@
 
   		echo '<h2>Exifデータ</h2>';
   		echo '<p><textarea style="width:90%;height:200px;">'.print_r($exif,true).'</textarea></p>';
+			printExif($img);
+
 
   	}
 
@@ -120,7 +125,10 @@
             position: new google.maps.LatLng(<?php echo "{$lat},{$lng}";?>), //ピンの緯度経度を入力
             map: map,
             title: "hoge" //ピンにマウスカーソルを乗せたときに表示されるタイトルを入力
-        });
+        })
+
+
+
                     }
     </script>
 

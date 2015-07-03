@@ -13,10 +13,13 @@
 	</head>
 <body onload="initialize()">
 
-
 <?php
 //ライブラリを読み込む
 require_once "./get-exif-10from60.php";
+require_once "./print-table.php";
+
+print "<a href=\"./get-exif.php\">画像一覧\n</a>";
+
 
 //指定された画像をブラウザに出力
 //ディレクトリの名前
@@ -56,10 +59,44 @@ if(!$exif ||
     $lng = get_10_from_60_exif($exif["GPSLongitudeRef"],$exif["GPSLongitude"]);
 
     echo "<h2>Exifデータ</h2>";
-    echo '<p><textarea style="width:90%;height:200px;">'.print_r($exif,true).'</textarea></p>';
+		printExif($img);
 
   }
+/*
+	//ディレクトリ内の画像を表示
+	while($file_name = $dir_name->read())
+	{
+		$path = $dir_name->path . "/" . $file_name;
+		if (@getimagesize($path))
+		{
+			$hogeexif = @exif_read_data($path);
+			if(!$hogeexif ||
+			  !isset($hogeexif["GPSLatitudeRef"]) || empty($hogeexif["GPSLatitudeRef"]) ||
+			  !isset($hogeexif["GPSLatitude"]) || empty($hogeexif["GPSLatitude"]) ||
+			  !isset($hogeexif["GPSLongitudeRef"]) || empty($hogeexif["GPSLongitudeRef"]) ||
+			  !isset($hogeexif["GPSLongitude"]) || empty($hogeexif["GPSLongitude"])
+			){
+			  echo '<p style="color:red">画像に位置情報、またはExif自体が含まれていませんでした…。</p>';
 
+			  //Exifが取得できた場合
+			  }else{
+
+			    //緯度を60進数から10進数に変換する
+			    $hogelat = get_10_from_60_exif($hogeexif["GPSLatitudeRef"],$hogeexif["GPSLatitude"]);
+
+			    //経度を60進数から10進数に変換する
+			    $hogelng = get_10_from_60_exif($hogeexif["GPSLongitudeRef"],$hogeexif["GPSLongitude"]);
+			  }
+				if ($hogelat) {
+					# code...
+				}
+			echo "<a href=\"view.php?f=$path\"\" $path  \"target=\"_blank\">";
+			echo "<img src=\" $path  \"width=\"100\"></a> ";
+		}
+	}
+	$dir_name->close();
+	*/
+	print "<a href=\"./around-place.php\">周辺施設\n</a>";
 ?>
 
 <!-- Google Maps APIの読み込み -->
